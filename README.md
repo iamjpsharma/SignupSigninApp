@@ -44,7 +44,7 @@ This project demonstrates a Signup and Sign-In module for an iOS application. Th
 ---
 
 ## Bonus Features
-- [x] **Biometric Login:** Supports Face ID/Touch ID for returning users
+- [x] **Biometric Login:** Supports Face ID for returning users
 - [ ] **Unit Tests:** Includes unit tests for:
   - [ ] Validation logic
   - [ ] Networking layer
