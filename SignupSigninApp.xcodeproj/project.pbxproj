@@ -27,6 +27,7 @@
 		39CDC2332D59FABA007E3F06 /* SignupSigninApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SignupSigninApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39CDC2432D59FABD007E3F06 /* SignupSigninAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SignupSigninAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		39CDC24D2D59FABD007E3F06 /* SignupSigninAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SignupSigninAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		39CDC2FF2D5A4F58007E3F06 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -79,6 +80,7 @@
 				39CDC2462D59FABD007E3F06 /* SignupSigninAppTests */,
 				39CDC2502D59FABD007E3F06 /* SignupSigninAppUITests */,
 				39CDC2342D59FABA007E3F06 /* Products */,
+				C829A8892ADD26504B36500C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,6 +92,14 @@
 				39CDC24D2D59FABD007E3F06 /* SignupSigninAppUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		C829A8892ADD26504B36500C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				39CDC2FF2D5A4F58007E3F06 /* Alamofire.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -111,8 +121,6 @@
 				39CDC2352D59FABA007E3F06 /* SignupSigninApp */,
 			);
 			name = SignupSigninApp;
-			packageProductDependencies = (
-			);
 			productName = SignupSigninApp;
 			productReference = 39CDC2332D59FABA007E3F06 /* SignupSigninApp.app */;
 			productType = "com.apple.product-type.application";
@@ -134,8 +142,6 @@
 				39CDC2462D59FABD007E3F06 /* SignupSigninAppTests */,
 			);
 			name = SignupSigninAppTests;
-			packageProductDependencies = (
-			);
 			productName = SignupSigninAppTests;
 			productReference = 39CDC2432D59FABD007E3F06 /* SignupSigninAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -157,8 +163,6 @@
 				39CDC2502D59FABD007E3F06 /* SignupSigninAppUITests */,
 			);
 			name = SignupSigninAppUITests;
-			packageProductDependencies = (
-			);
 			productName = SignupSigninAppUITests;
 			productReference = 39CDC24D2D59FABD007E3F06 /* SignupSigninAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -195,6 +199,9 @@
 			);
 			mainGroup = 39CDC22A2D59FABA007E3F06;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				39CDC3742D5A51B5007E3F06 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 39CDC2342D59FABA007E3F06 /* Products */;
 			projectDirPath = "";
@@ -399,6 +406,7 @@
 				DEVELOPMENT_TEAM = 4NJ8AX4W2W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "\"We use Face ID to securely authenticate you and protect your account.\"";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -428,6 +436,7 @@
 				DEVELOPMENT_TEAM = 4NJ8AX4W2W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "\"We use Face ID to securely authenticate you and protect your account.\"";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -558,6 +567,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		39CDC3742D5A51B5007E3F06 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 39CDC22B2D59FABA007E3F06 /* Project object */;
 }
