@@ -27,6 +27,8 @@ class SignupViewModel: ObservableObject {
     @Published var showSignupError: Bool = false
     @Published var navigateToDashboard: Bool = false
 
+    private let keyChainHelper = KeyChainHelper()
+
     var isFormValid: Bool {
         return !fullName.isEmpty &&
             ValidationHelper.isValidEmail(email) &&
@@ -67,6 +69,11 @@ class SignupViewModel: ObservableObject {
                         UserDefaults.standard.set(true, forKey: "isLoggedIn")
                         UserDefaultsManager.shared.saveUser(User(fullName: self.fullName, email: self.email))
                         self.navigateToDashboard = true
+                        if self.saveDataToKeychain(data: self.email, forKey: "email") {
+                            print("Email saved to Keychain!")
+                        } else {
+                            print("Failed to save email to Keychain.")
+                        }
                     } else {
                         self.errorMessage = signupResponse.message
                         self.showSignupError = true
@@ -78,4 +85,13 @@ class SignupViewModel: ObservableObject {
             }
         }
     }
+    
+    func saveDataToKeychain(data: String, forKey key: String) -> Bool {
+        return keyChainHelper.saveToKeychain(stringData: data, forKey: key)
+    }
+    
+    func retrieveDataFromKeychain(forKey key: String) -> String? {
+        return keyChainHelper.getFromKeychain(forKey: key)
+    }
+    
 }

@@ -13,6 +13,8 @@ struct DashboardView: View {
     @State private var isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
     @State private var isUnlocked = false // State to track if the app is unlocked
 
+    private let keyChainHelper = KeyChainHelper()
+    
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
@@ -22,7 +24,7 @@ struct DashboardView: View {
                         .fontWeight(.bold)
                         .padding(.top, 20)
 
-                    Text("Email: \(viewModel.user?.email ?? "Not available")")
+                    Text("Email: \(viewModel.user?.email ?? retrieveDataFromKeychain(forKey: "email") ?? "Email not found")")
                         .font(.subheadline)
                     
                     VStack(spacing: 10) {
@@ -82,7 +84,6 @@ struct DashboardView: View {
         let context = LAContext()
         var error: NSError?
 
-        // Check if the device supports Face ID and if the user has enrolled face
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
             let reason = "Authenticate to access your dashboard"
 
@@ -107,12 +108,18 @@ struct DashboardView: View {
             viewModel.loadUserData()
         }
     }
+    
+    func saveDataToKeychain(data: String, forKey key: String) -> Bool {
+        return keyChainHelper.saveToKeychain(stringData: data, forKey: key)
+    }
+    
+    func retrieveDataFromKeychain(forKey key: String) -> String? {
+        return keyChainHelper.getFromKeychain(forKey: key)
+    }
+    
 }
 
 #Preview {
     DashboardView()
 }
 
-#Preview {
-    DashboardView()
-}

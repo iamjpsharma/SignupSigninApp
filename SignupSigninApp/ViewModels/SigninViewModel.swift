@@ -24,6 +24,8 @@ class SignInViewModel: ObservableObject {
     @Published var navigateToSignup: Bool = false
     @Published var showValidationErrors: Bool = false
 
+    private let keyChainHelper = KeyChainHelper()
+
     var isFormValid: Bool {
         return ValidationHelper.isValidEmail(email) && !password.isEmpty
     }
@@ -55,11 +57,24 @@ class SignInViewModel: ObservableObject {
                 case .success(let signInResponse):
                     UserDefaultsManager.shared.saveUser(signInResponse.user)
                     UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                    if self.saveDataToKeychain(data: self.email, forKey: "email") {
+                        print("Email saved to Keychain!")
+                    } else {
+                        print("Failed to save email to Keychain.")
+                    }
                     self.navigateToDashboard = true
                 case .failure(let error):
                     self.errorMessage = "Error: \(error.localizedDescription)"
                 }
             }
         }
+    }
+    
+    func saveDataToKeychain(data: String, forKey key: String) -> Bool {
+        return keyChainHelper.saveToKeychain(stringData: data, forKey: key)
+    }
+    
+    func retrieveDataFromKeychain(forKey key: String) -> String? {
+        return keyChainHelper.getFromKeychain(forKey: key)
     }
 }
